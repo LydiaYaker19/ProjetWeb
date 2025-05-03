@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:u="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Moyenne de l'étudiant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #007bff; }
+        .message { padding: 10px; background-color: #f0f8ff; border: 1px solid #007bff; border-radius: 5px; width: fit-content; }
+        a { text-decoration: none; color: white; background: #007bff; padding: 8px 12px; border-radius: 5px; display: inline-block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+
+    <h2>Moyenne de l'etudiant</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Moyenne</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="std : ${moy}">
+            <td th:text="${std.id}"></td>
+            <td th:text="${std.nom}"></td>
+            <td th:text="${std.prenom}"></td>
+            <td th:text="${std.note1}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="http://localhost:8080/">Retour</a>
+</body>
+</html>

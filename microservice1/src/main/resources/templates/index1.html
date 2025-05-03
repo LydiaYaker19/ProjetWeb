@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accéder à vos notes</title>
+    <script>
+        function rechercherEtudiant() {
+            let numeroEtudiant = document.getElementById("numeroEtudiant").value;
+            const regex = /^[1-9][0-9]*$/;
+
+            if (!regex.test(numeroEtudiant)) {
+            errorMessage.textContent = "Le numéro doit contenir 9 chiffres.";
+        } else {
+                window.location.href = `http://localhost:31380/microsrvc1mysql/${numeroEtudiant}`
+
+        }
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div style="text-align: center; margin-top: 50px;">
+    <h2>Accéder à vos notes</h2>
+    <label>Numéro d'étudiant :</label>
+    <input type="text" id="numeroEtudiant" placeholder="Entrez votre numéro" required>
+    <button onclick="rechercherEtudiant()">Afficher mes Notes</button>
+
+    <div id="result" style="margin-top: 20px;"></div>
+</div>
+</body>
+
+</html>
+

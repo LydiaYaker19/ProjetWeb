@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes de l'étudiant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #007bff; }
+        .message { padding: 10px; background-color: #f0f8ff; border: 1px solid #007bff; border-radius: 5px; width: fit-content; }
+        a { text-decoration: none; color: white; background: #007bff; padding: 8px 12px; border-radius: 5px; display: inline-block; margin-top: 10px; }
+    </style>
+    <script th:inline="javascript">
+        function goBack() {
+            window.history.back();
+        }
+
+        async  function sendEtudiant(button) {
+            let numeroEtudiant = document.getElementById("etudiantId").value;
+            console.log("Numéro étudiant :", numeroEtudiant);
+            const response = await fetch(`http://localhost:31380/microsrvc1mysql/send/${numeroEtudiant}`)
+            window.location.href = `http://localhost:31380/microsrvc2/moy`
+
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Vos Notes</h2>
+    <table>
+        <thead>
+        <tr>
+            <!--<th>ID</th>-->
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Mathématique</th>
+            <th>Physique</th>
+            <th>Science</th>
+            <!--<th>Note2</th>-->
+            <!--<th>Note3</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="std : ${student}">
+            <!--id="etudiantId" data-id="${std.id}"  th:data-id="${std.id}"     th:data-id="${std.id}" th:text="${std.id}"  </td>-->
+            <input type="hidden" th:value="${std.id}" id="etudiantId" >
+            <td th:text="${std.nom}"></td>
+            <td th:text="${std.prenom}"></td>
+            <td th:text="${std.note1}"></td>
+            <td th:text="${std.note2}"></td>
+            <td th:text="${std.note3}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <!--th:data-id="${std.id}"-->
+    <button onclick="sendEtudiant(this)" >calculer moyenne</button>
+    <br>
+    <br>
+    <button onclick="goBack()">Retour</button>
+</body>
+</html>
